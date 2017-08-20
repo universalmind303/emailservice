@@ -40,7 +40,7 @@ I provided an unattended gmail that you can use.
 under the `config.js` 
 simply input your user and pass associated with a gmail account. 
 
-if you are used my unattended gmail, insert
+if you are using my unattended gmail, insert
 
 user: `reply.corygrinstead@gmail.com`
 pass: `kohactive`
