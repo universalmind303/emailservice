@@ -74,6 +74,23 @@ as well as your
 
 These will go into your config respectively.
 
+Note regarding AWS. 
+- you will only be able to send to verified emails while you are in sandbox mode. 
+
+## Client 
+
+I built a very simple ui to demonstrate the email service as well
+
+
+### Setup
+
+
+make sure your server is running. `yarn start` from root directory
+from root directory, `cd client && yarn install && yarn start `
+
+open a web browser and go to [localhost:9000](localhost:9000)
+
+And thats it! 
 
 
 
