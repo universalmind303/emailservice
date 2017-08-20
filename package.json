@@ -1,0 +1,25 @@
+{
+  "name": "emailservice",
+  "version": "1.0.0",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/server.js --ignore 'client/'"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.99.0",
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
+    "express": "^4.15.3",
+    "express-session": "^1.15.5",
+    "js-base64": "^2.1.9",
+    "nodemailer": "^4.0.1",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0",
+    "passport-oauth2": "^1.4.0",
+    "sendgrid": "^5.2.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
