@@ -88,7 +88,7 @@ I built a very simple ui to demonstrate the email service as well
 make sure your server is running. `yarn start` from root directory
 from root directory, `cd client && yarn install && yarn start `
 
-open a web browser and go to [localhost:9000](localhost:9000)
+open a web browser and go to [localhost:9000](http://localhost:9000)
 
 And thats it! 
 
