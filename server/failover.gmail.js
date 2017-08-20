@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 
-const { user, pass } = require('./config').FAILOVER.gmail
+const { user, pass } = require('./config').GMAIL
 
 router.get('/', async (req, res,next) => {
 

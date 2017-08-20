@@ -9,7 +9,7 @@ const router = express.Router();
 
 const AWS = require('aws-sdk');
 
-let {ACCESS_ID, SECRET } = require('./config').FAILOVER.aws
+let {ACCESS_ID, SECRET } = require('./config').AWS
 
 AWS.config = new AWS.Config();
 AWS.config.accessKeyId = ACCESS_ID;
