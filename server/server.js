@@ -21,7 +21,8 @@ const app = express();
 
 //routes 
 const sendEmail = require('./sendEmail')
-const failover = require('./failover.aws')
+const failoverAws = require('./failover.aws')
+const failoverGmail = require('./failover.gmail')
 
 
 
@@ -34,7 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/api/sendEmail',cors(), sendEmail)
-app.use('/api/failover', failover)
+app.use('/api/failover', failoverAws)
 
 app.use((req, res, next) => {
   console.log(req.query)

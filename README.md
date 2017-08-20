@@ -77,6 +77,22 @@ These will go into your config respectively.
 Note regarding AWS. 
 - you will only be able to send to verified emails while you are in sandbox mode. 
 
+the default failover is aws. 
+if you wish to use the gmail failover, you simply need to edit one line of code in `server.js`
+
+line 38: 
+
+change 
+
+`app.use('/api/failover', failoverAws)`
+
+to 
+
+`app.use('/api/failover', failoverGmail)`
+
+
+
+
 ## Client 
 
 I built a very simple ui to demonstrate the email service as well
