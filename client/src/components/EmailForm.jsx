@@ -34,8 +34,7 @@ class EmailForm extends Component {
       })
     } catch (e) {
       console.error(e)
-    }
-    
+    }    
   }
   render() {
 

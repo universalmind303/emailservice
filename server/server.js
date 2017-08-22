@@ -10,11 +10,8 @@ const session = require('express-session');
 // const GoogleInit = require('./gmailQuickstart')
 
 const port = process.env.PORT || 8000
-
-
-const directory = process.env.PUBLIC || 'client/dist';
-
 const app = express();
+const directory = process.env.PUBLIC || 'client/dist';
 
 //initializes google oauth
 // GoogleInit()
@@ -27,7 +24,6 @@ const failoverGmail = require('./failover.gmail')
 
 
 app.use('/', express.static(directory));
-
 // middleware 
 app.use(session({secret: 'some secret', resave: false, saveUninitialized: false}));
 
@@ -51,8 +47,6 @@ app.use( (err, req, res) => {
   let status = err.status || 500;
   res.status(status).send(err.message);
 });
-
-
 
 app.listen(port, () => console.log(`Server is listening on port ${port}!`));
 

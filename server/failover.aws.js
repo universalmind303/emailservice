@@ -1,9 +1,6 @@
 const nodemailer = require('nodemailer');
-
-
 const express = require('express');
 const router = express.Router();
-
 
 // configure AWS SDK
 
@@ -19,18 +16,17 @@ AWS.config.update({region:'us-west-2'});
 // create Nodemailer SES transporter
 
 router.get('/', async (req, res,next) => {
+
   let { toEmail, fromEmail, subject, body, attachments = [] } = req.session.mail
 
   const transporter = nodemailer.createTransport({
     SES: new AWS.SES({
       apiVersion: '2010-12-01',
       sendingRate: 1
-
     })
-  });
+  })
 
   try {
-
     let response = await transporter.sendMail({
       from: fromEmail, 
       to: toEmail, 
@@ -39,14 +35,12 @@ router.get('/', async (req, res,next) => {
       html: body,
       attachments: attachments,
     })
-
     console.log('sent successfully')
     res.send('sent successfully')
 
   } catch (error) {
-
     console.log('THERE WAS AN ERROR: \n \n ', error)
-    res.end()
+    return res.status(500)
   }
 
 
