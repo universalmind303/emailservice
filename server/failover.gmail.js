@@ -4,7 +4,7 @@ const router = express.Router();
 
 const { user, pass } = require('./config').GMAIL
 
-router.get('/', async (req, res,next) => {
+router.get('/', (req, res,next) =>{
 
   let { toEmail, fromEmail, subject, body, attachments = [] } = req.session.mail
 
@@ -17,21 +17,21 @@ router.get('/', async (req, res,next) => {
       pass: pass
     }
   })
-
-  try {    
-    let response = await transporter.sendMail({
-      from: fromEmail, 
-      to: toEmail, 
-      subject: subject, 
-      text: body, 
-      html: body,
-      attachments: attachments,
+  transporter.sendMail({
+    from: fromEmail, 
+    to: toEmail, 
+    subject: subject, 
+    text: body, 
+    html: body,
+    attachments: attachments,
+  }, (error, response) =>{
+    if(error) {
+      console.log('THERE WAS AN ERROR: \n \n ', error)
+      return res.status(500)      
+    } else {
+      console.log('sent successfully')
+      res.send(response)      
+    }
   })
-    console.log('sent successfully')
-    res.send(response)
-  } catch (error) {
-    console.log('THERE WAS AN ERROR: \n \n ', error)
-    return res.status(500)
-  }
 })
 module.exports = router;

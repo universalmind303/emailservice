@@ -41,7 +41,7 @@ app.use((req, res, next) => {
 });
 
 // error handler
-app.use( (err, req, res) => {
+app.use( (err, req, res) =>{
   console.log('UNKNOWN ERROR')
   console.log(err.stack);
   let status = err.status || 500;

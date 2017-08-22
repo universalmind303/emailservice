@@ -15,7 +15,7 @@ AWS.config.update({region:'us-west-2'});
 
 // create Nodemailer SES transporter
 
-router.get('/', async (req, res,next) => {
+router.get('/', (req, res,next) =>{
 
   let { toEmail, fromEmail, subject, body, attachments = [] } = req.session.mail
 
@@ -25,24 +25,22 @@ router.get('/', async (req, res,next) => {
       sendingRate: 1
     })
   })
-
-  try {
-    let response = await transporter.sendMail({
-      from: fromEmail, 
-      to: toEmail, 
-      subject: subject, 
-      text: body, 
-      html: body,
-      attachments: attachments,
-    })
-    console.log('sent successfully')
-    res.send('sent successfully')
-
-  } catch (error) {
-    console.log('THERE WAS AN ERROR: \n \n ', error)
-    return res.status(500)
-  }
-
+  transporter.sendMail({
+    from: fromEmail, 
+    to: toEmail, 
+    subject: subject, 
+    text: body, 
+    html: body,
+    attachments: attachments,
+  }, (error, response) =>{
+    if(error) {
+      console.log('THERE WAS AN ERROR: \n \n ', error)
+      return res.status(500)        
+    } else {
+      console.log('sent successfully')
+      return res.send('sent successfully')        
+    }
+  })
 
 
 })

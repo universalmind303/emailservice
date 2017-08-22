@@ -1,43 +1,37 @@
-import React, { Component } from 'react';
-import { SendEmail }  from './Service.jsx';
+import React, {Component} from 'react'
+import {SendEmail}  from './Service'
 
 
 class EmailForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-        toEmail: 'cory.grinstead@gmail.com',
-        fromEmail: '',
-        subject: '',
-        body: '',
-        attachments: ''
+      toEmail: 'cory.grinstead@gmail.com',
+      fromEmail: '',
+      subject: '',
+      body: '',
+      attachments: '',
     }
-    this.handleSubmit = this.handleSubmit.bind(this)
     this.updateForm = this.updateForm.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   updateForm(e, type) {
+
     e.preventDefault()
     this.setState({ [type] : e.target.value })
   }
-  async handleSubmit() {
-
+  handleSubmit() {
     let {toEmail, fromEmail, subject, body, attachments} = this.state
-
-    try {
-      await SendEmail({
-        toEmail: toEmail.split ? toEmail.split(',') : toEmail,
-        fromEmail: fromEmail,
-        subject: subject,
-        body: body,
-        attachments: attachments
-      })
-    } catch (e) {
-      console.error(e)
-    }    
+    SendEmail({
+      toEmail: toEmail.split ? toEmail.split(',') : toEmail,
+      fromEmail: fromEmail,
+      subject: subject,
+      body: body,
+      attachments: attachments
+    })    
   }
   render() {
-
     return (
     // <!-- Modal -->
       <div className='modal fade' id='sendEmail' tabIndex='-1' role='dialog' aria-labelledby='sendEmailLabel' aria-hidden='true'>
