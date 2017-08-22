@@ -35,10 +35,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/api/sendEmail',cors(), sendEmail)
-app.use('/api/failover', failoverAws)
+app.use('/api/failover', failoverGmail)
 
 app.use((req, res, next) => {
-  console.log(req.query)
   let err = new Error('ERROR 404 Sorry can\'t find what you\'re looking for!');
   err.status = 404;
   next(err);

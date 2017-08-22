@@ -20,21 +20,17 @@ class EmailForm extends Component {
     e.preventDefault()
     this.setState({ [type] : e.target.value })
   }
-  async handleSubmit() {
-
+  handleSubmit() {
     let {toEmail, fromEmail, subject, body, attachments} = this.state
 
-    try {
-      await SendEmail({
-        toEmail: toEmail.split ? toEmail.split(',') : toEmail,
-        fromEmail: fromEmail,
-        subject: subject,
-        body: body,
-        attachments: attachments
-      })
-    } catch (e) {
-      console.error(e)
-    }
+    SendEmail({
+      toEmail: toEmail.split ? toEmail.split(',') : toEmail,
+      fromEmail: fromEmail,
+      subject: subject,
+      body: body,
+      attachments: attachments
+    })
+    .catch((e) => console.error(e))
     
   }
   render() {
